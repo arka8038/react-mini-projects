@@ -1,8 +1,9 @@
 import { useState } from "react"
+import { ItemData } from "../types/item"
 
-const Form = () => {
+const Form = ({ onAddItem }: { onAddItem: (item: ItemData) => void }) => {
     const [description, setDescription] = useState('')
-    const [quantity, setQuantity] = useState(0)
+    const [quantity, setQuantity] = useState(1)
 
     const handleSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault()
@@ -15,10 +16,11 @@ const Form = () => {
             quantity,
             packed: false
         }
-        console.log(newItem)
+
+        onAddItem(newItem)
 
         setDescription('')
-        setQuantity(0)
+        setQuantity(1)
     }
 
     return (
